@@ -1,64 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using HemsideGenerator.Controller;
+using HemsideGenerator.Model;
+using HemsideGenerator.View;
 
-/*
- * Data ifrån API
- */
-string[] techniques = {"   C#", "daTAbaser", "WebbuTVeCkling ", "clean Code   "};
-string[] messagesToClass = { "Glöm inte att övning ger färdighet!", "Öppna boken på sida 257." };
+MockApCall mockApCall = new MockApCall();
 
-/*
- * Skriva ut data
- */
-printPage();
+ConsoleView consoleView = new ConsoleView();
 
-void printStart()
-{
-    string start = "<!DOCTYPE html>\n<html>\n<body>\n<main>\n";
-    Console.WriteLine(start);
-}
-void printWelcome(string className, string[] message)
-{
-    string welcome = $"<h1> Välkomna {className}! </h1>";
+PrintToFile printToFile = new PrintToFile();
 
-    string welcomeMessage = "";
+HemsideGeneratorController controller = new HemsideGeneratorController(mockApCall, consoleView);
 
-    foreach (string msg in message)
-    {
-        welcomeMessage += $"\n<p><b> Meddelande: </b> {msg} </p>";
-    }
-    
-    Console.WriteLine(welcome + welcomeMessage);
-}
-void printKurser()
-{
-    string kurser = courseGenerator(techniques);
-    Console.WriteLine(kurser);
-}
-void printEnd()
-{
-    string end = "</main>\n</body>\n</html>";
-    Console.WriteLine(end);
-}
-
-
-void printPage()
-{
-    printStart();
-    printWelcome("Klass A", messagesToClass);
-    printKurser();
-    printEnd(); 
-}
-
-
-string courseGenerator(string[] techniques)
-{
-    string kurser = "";
-
-    foreach (string technique in techniques)
-    {
-        string tmp = technique.Trim();
-        kurser += "<p>" + tmp[0].ToString().ToUpper() + tmp.Substring(1).ToLower() + "</p>\n";
-    }
-
-    return kurser;
-}
+controller.printPage();
