@@ -10,4 +10,4 @@ PrintToFile printToFile = new PrintToFile();
 
 HemsideGeneratorController controller = new HemsideGeneratorController(mockApCall, consoleView);
 
-controller.printPage();
+controller.PrintPage();
