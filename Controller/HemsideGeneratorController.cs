@@ -18,11 +18,11 @@ namespace HemsideGenerator.Controller
             this.model = model;
             this.view = view;
         }
-        private string printStart()
+        private string PrintStart()
         {
             return "<!DOCTYPE html>\n<html>\n<body>\n<main>\n";
         }
-        private string printWelcome(string className, string[] message)
+        private string PrintWelcome(string className, string[] message)
         {
             string welcome = $"<h1> Välkomna {className}! </h1>";
 
@@ -34,31 +34,31 @@ namespace HemsideGenerator.Controller
             }
             return welcomeMessage;
         }
-        private string printKurser()
+        private string PrintKurser()
         {
-            return courseGenerator(this.model.GetTechniques());
+            return CourseGenerator(this.model.GetTechniques());
         }
-        private string printEnd()
+        private string PrintEnd()
         {
             return "</main>\n</body>\n</html>";
         }
 
 
-        public void printPage()
+        public void PrintPage()
         {
             string[] page = new string[4];
 
-            page[0] = printStart();
-            page[1] = printWelcome("Klass A", this.model.GetMessagesToClass());
-            page[2] = printKurser();
-            page[3] = printEnd();
+            page[0] = PrintStart();
+            page[1] = PrintWelcome("Klass A", this.model.GetMessagesToClass());
+            page[2] = PrintKurser();
+            page[3] = PrintEnd();
 
             this.view.OutPut(page);
 
         }
 
 
-        private string courseGenerator(string[] techniques)
+        private string CourseGenerator(string[] techniques)
         {
             string kurser = "";
 
